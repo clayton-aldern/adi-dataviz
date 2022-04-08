@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css" />
     <link rel="stylesheet" href="reveal.js/css/custom-gc.css" />
     <link rel="stylesheet" href="https://use.typekit.net/llq8qff.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Overpass">
 </head>
 <body>
 <div class="reveal">
@@ -14,30 +14,215 @@
 
 
 <section class="center">
-	<h1>It's usually possible</h1>
-	<h3>Some questions to ask yourself when data-reporting a story</h3>
+	<h2>Data visualization: theory and practice</h2>
+    <div class="fragment step-fade-in">
+        <h4>(i.e. what the rules are and when to break them)</h4>
+    </div>
 	<p style="margin-top:4em">
-		<small>A Little Learning Lab by <a href="https://claytonaldern.com" style="color:#FF7700">Clayton Aldern</a> for <a href="https://www.grist.org/" style="color:#FF7700">Grist</a></small>
-        <br><small><em>(Press the space bar to advance the slides!)</em></small>
+		<small><a href="https://claytonaldern.com" style="color:#E6FFA0">Clayton Aldern</a>, MSc, MPP</small>
+        <a href="https://csde.washington.edu/">
+            <img data-src="imgs/csde.png" style="float:right;width:300px;margin: 10;">
+        </a>
         <a href="https://www.grist.org/">
-		<img data-src="imgs/2000x1628-transparent.png" alt="Grist" style="float:right;width:200px;">
+	    	<img data-src="imgs/Grist_celery_large.png" style="float:right;width:200px;margin: 10">
 		</a>
+        <br>
+        <small>4 April 2022</small>
+        <!-- <br><small><em>(Press the space bar to advance the slides!)</em></small> -->
 	</p>
 </section>
 
 
 <section>
-    <h3>What is data reporting?</h3>
+    <h3>Why visualize data?</h3>
     <div class="row no-margin-top">
 		<div class="col-50">
 			<div class="fragment step-fade-in-then-out">
-				<p>I'm not sure; I just thought it sounded good.</p>
-				<p>I think it mostly means applying the tools of reporting to the problems of data science.</p>
-				<p>We usually think of data journalism the other way around, i.e. as complementing the tools of reporting with contemporary analytic techniques.</p>
+				<p>This is a serious motivating question.</p>
+                <p>There are worthy alternatives! What about data sonification?</p>
 			</div>
 			<div class="fragment step-fade-in-then-out">
-				<p>The point is: You already know how to do this.</p>
-				<p>Why let data problems off the hook? You wouldn't do the same with your sources.</p>
+				<p>My main suggestion is: <em>We visualize data to make sense of the world</em>.</p>
+				<p>Sometimes this sensemaking comes in the form of exploratory analysis (making sense for the self).</p>
+                <p>Sometimes it serves a persuasive, narrative purpose (making sense for others).</p>
+                <p>Sometimes you get lucky and it does both.</p>
+            </div>
+        </div>
+        <div class="fig-container no-margin-top" data-file="d3-fig/gooey.html" data-style="width: 75%"></div>
+    </div>
+</section> 
+
+<section class="center">
+	<h2>Congratulations, Clay, you have invented the scientific method.</h2>
+</section>
+
+<section>
+    <h3>Sensemaking</h3>
+    <div class="row no-margin-top">
+        <div class="fragment step-fade-in-then-out">
+            <p>Who has heard of John Snow?</p>
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/jon-snow.jpeg" height="500px" width="auto">
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/john-snow.jpg" height="500px" width="auto">
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/john-snow-ghost.jpg" height="500px" width="auto">
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/snow-cholera.png" height="500px" width="auto">
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/monmonier1996.png" height="500px" width="auto" alt="John Snow cholera map via Monmonier (1996)">
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <p>So: In the case of John Snow, we actually got quite lucky here.</p>
+            <br>
+            <p>Claim: <strong>Intent</strong> is a sufficient but not necessary condition for sensemaking.</p>
+            <p>It is very difficult to optimize for luck, so you should seek to optimize for intentionality.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <section>
+        <h3>Intent in data visualization</h3>
+        <div class="row no-margin-top">
+            <div class="col-50">
+                <div class="fragment step-fade-in">
+                    <p>Recall that charts should further a narrative. They do so by being additive and/or memorable. True in science, journalism, the public sector, etc.</p>
+                </div>
+                <div class="fragment step-fade-in">
+                    <p>They can also compress a narrative. If it takes 300 words to explain a chart, you probably don't need it. (But if you can replace 300 words with a chart, then you might!)</p>
+                </div>
+                <div class="fragment step-fade-in">
+                    <p><strong>Charts should be on the page for a reason.</strong></p>
+                </div>
+            </div>
+            <div class="fig-container no-margin-top" data-file="d3-fig/bubbles.html"></div>
+        </div>
+    </section>
+    <section>
+        <h3>Interactivity</h3>
+        <div class="row no-margin-top">
+            <div class="col-50">
+                    <div class="fragment step-fade-in">
+                        <p>Ask yourself the same questions. Is it additive? If not, is it memorable*? Is it compressing?</p>
+                    </div>
+                    <div class="fragment step-fade-in">
+                        <p>Additionally, interactivity should allow for context-specificity (think: subsetting functions).</p>
+                    </div>
+                    <div class="fragment step-fade-in">
+                        <p>Again: It should exist for a reason.</p>
+                    </div>
+                    <div class="fragment step-fade-in">
+                        <p>*I don't mean: "Is it so bad that you've been traumatized and can't help but remember it?"</p>
+                    </div>
+            </div>
+            <div class="fig-container no-margin-top" data-file="d3-fig/interactive.html"></div>
+        </div>
+    </section>
+</section>
+
+<section class="center">
+	<h2>Those were the rules you shouldn't break.</h2>
+</section>
+
+<section>
+    <h3>What are the other rules?</h3>
+    <div class="row no-margin-top">
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/shootings1.png" height="500px" width="auto">
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/shootings2.png" height="500px" width="auto">
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <p>Minimalism often undergirds effective communication. Ask yourself: What could I remove from this chart while still retaining its core message?</p>
+            <p>Some examples we just saw include axis-label removal, minimal legends (color-matched subheads), a lack of gridlines, etc.</p>
+            <p>Smoothing data can be extraordinarily useful, as well. Data visualization is data communication, not data enumeration.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h3>What rules can I break?</h3>
+    <div class="row no-margin-top">
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/reuters.jpeg" height="500px" width="auto">
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/usd1.jpeg" height="350px" width="auto">
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/usd2.png" height="500px" width="auto">
+        </div>
+        <div class="fragment step-fade-in-then-out">
+            <p>The point is not that you're allowed to flip an axis every now and then (though that's true).</p>
+            <p>The point is that sometimes traditional design rules run counter to your communicative goals.</p>
+            <p>That last example is from <a href="https://datajournalism.com/read/longreads/the-unspoken-rules-of-visualisation">this link</a>, by the way, which has plenty of those design rules spelled out.</p>
+        </div>
+    </div>
+</section>
+
+<section class="center">
+	<h2>A quick word on color</h2>
+    <p>(and not just because I am colorblind.)</p>
+</section>
+
+<section>
+    <section>
+        <h3>Do not do this.</h3>
+        <div class="row no-margin-top">
+            <div class="fragment step-fade-in-then-out">
+                <img src="imgs/jet1.png" height="500px" width="auto">
+            </div>
+            <div class="fragment step-fade-in-then-out">
+                <img src="imgs/jet2.gif" height="400px" width="auto">
+            </div>
+            <div class="fragment step-fade-in-then-out">
+                <img src="imgs/jet3.jpeg" height="300px" width="auto">
+            </div>
+        </div>
+    </section>
+    <section>
+        <h3>Do this.</h3>
+        <div class="row no-margin-top">
+            <div class="fragment">
+                <img src="imgs/jet4.png" height="300px" width="auto">
+                <p>By which I mean: If continuous color expression is important to your chart, leverage something viridis-inspired or monotonous.</p>
+                <p>(That example from <a href="https://www.domestic-engineering.com/drafts/viridis/viridis.html">MC Byington</a>)</p>
+            </div>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h3>Okay so what is going on here?</h3>
+    <div class="row no-margin-top">
+        <div class="fragment step-fade-in-then-out">
+            <img src="imgs/roser.gif" height="500px" width="auto">
+        </div>
+    </div>
+</section>
+
+<section>
+    <h3>Conclusions?</h3>
+    <div class="row no-margin-top">
+		<div class="col-50">
+			<div class="fragment step-fade-in">
+				<p>Data visualization is a narrative act.</p>
+			</div>
+            <div class="fragment step-fade-in">
+				<p>So: Follow the rules in service of your narrative. I'm not just saying this because I'm a journalist. Science is persuasive communication, too.</p>
+			</div>
+            <div class="fragment step-fade-in">
+				<p>Break the rules in service of emotional resonance and internalization.</p>
+			</div>
+            <div class="fragment step-fade-in">
+				<p>Don't use the jet colormap. ¯\_(ツ)_/¯</p>
 			</div>
         </div>
         <div class="fig-container no-margin-top" data-file="d3-fig/gooey.html" data-style="width: 75%"></div>
@@ -45,162 +230,18 @@
 </section> 
 
 <section class="center">
-	<h2>Today: some questions to ask</h2>
-	<p class="fragment fade-in">Next time: some tools to use</p>
-</section>
-
-<section>
-    <section>
-        <h3>Question 1: Do I need (more) data?</h3>
-        <div class="row no-margin-top">
-            <div class="col-50">
-                <div class="fragment step-fade-in-then-out">
-                    <p>That is, do I need data to answer a question I'm posing in this story?</p>
-                    <p>Ask yourself this question when you're starting to feel a hunch coming on.</p>
-                    <p>'Data' refers to both qualitative and quantitative information.</p>
-                </div>
-            </div>
-            <div class="fig-container no-margin-top" data-file="d3-fig/bubbles.html"></div>
-        </div>
-    </section>
-    <section>
-        <h3>Answer: ¯\_(ツ)_/¯</h3>
-        <div class="fragment step-fade-in-then-out">
-            <div class="row no-margin-top">
-                <div class="col-50">
-                    <p>I dunno. It's your story. If you're Tom Friedman or David Brooks, why bother?</p>
-                    <p>For the rest of us, that 'hunch' might also be viewed as a 'hypothesis'. So: The scientific method might be helpful here.</p>
-                    <p>Question 1 rephrased, maybe: What would it take to prove my hunch wrong?</p>
-                </div>
-                <div class="col-50"><br><img src="imgs/brooks.png"></div>
-            </div>
-        </div>
-    </section>
-    <section class="center">
-        <h2>The point: Data are just other sources. Interrogate them accordingly.</h2>
-        <p class="fragment fade-in">Which brings us to Question 2.</p>
-    </section>
-</section> 
-
-<section>
-    <section>
-        <h3>Question 2: What else might explain my observations?</h3>
-        <div class="row no-margin-top">
-                <div class="fragment step-fade-in-then-out">
-                    <p>Claim: Science (and reporting?) advances through falsification, not discovery.</p>
-                    <p>But: Multiple hypothetical processes can lead to the same observations.</p>
-                    <p>And: Multiple models can be consistent with single processes.</p>
-                    <p>And: Multiple hypotheses (explanations) can be consistent with single processes.</p>
-                </div>
-                <div class="fragment step-fade-in-then-out">
-                    <a href="https://xcelab.net/rm/statistical-rethinking/"><img src="imgs/models.png" height="500px"></a>
-                </div>
-        </div>
-    </section>
-    <section>
-        <h3>So ... statistics? Null hypothesis significance testing?</h3>
-        <div class="row no-margin-top">
-            <div class="col-50">
-                <div class="fragment step-fade-in-then-out">
-                    <p>Not really. We're actually talking about the opposite of <em>p</em>-values.</p>
-                    <p>For the STS nerds in the room, we want a more purely Popperian mode of falsification.</p>
-                    <p>Yes, you're challenging prevailing logic in your reporting. <strong>But to make it water-tight, you're also trying to prove yourself wrong.</strong></p>
-                </div>
-            </div>
-            <div class="fig-container no-margin-top" data-file="d3-fig/bubbles.html"></div>
-        </div>
-    </section>
-</section>
-
-<section class="center">
-	<h2>That's the theory, at least.</h2>
-	<p class="fragment fade-in">In practice...</p>
-</section>
-
-<section>
-    <section>
-        <h3>Question 3a: What do we already have?</h3>
-        <div class="row no-margin-top">
-            <div class="fragment step-fade-in-then-out">
-                <p>Table in a PDF? Data.</p>
-                <p>Folder of PDFs? Data.</p>
-                <p>Directory of files on a website? Also data.</p>
-                <p>Text on a website? Data. (Has it changed over time?)</p>
-                <p>Cat photos? Obviously data.</p>
-            </div>
-        </div>
-    </section>
-    <section>
-        <img src="imgs/cats.gif">
-    </section>
-    <section class="center">
-        <h2>Often, structured data already exist. You just have to <strong>dig</strong> for the structure.</h2>
-        <p class="fragment fade-in">Not really sure where this metaphor is going...</p>
-    </section>
-    <section>
-        <h3>Question 3b: What's missing?</h3>
-        <div class="row no-margin-top">
-            <div class="fragment step-fade-in-then-out">
-                <p>Or: What assumptions—explicit or implicit—are you making?</p>
-                <p>The data are probably out there.</p>
-                <p>When in doubt, Google (er, <a href="https://duckduckgo.com" style="color:#FF7700">DuckDuckGo</a>) is your friend.</p>
-                <p>And: Don't forget about your browser's Inspect tool.</p>
-            </div>
-        </div>
-    </section>
-    <section>
-        <img src="imgs/google.gif">
-    </section>
-    <section>
-        <a href="https://datasetsearch.research.google.com/"><img src="imgs/google-data.gif"></a>
-    </section> 
-    <section>
-        <img src="imgs/inspect-flat.png" height="500px">
-    </section>
-    <section>
-        <img src="imgs/inspect.gif">
-    </section>
-</section>
-
-<section class="center">
-	<h2>(Of course, it's not all about scraping.)</h2>
-</section>
-
-<section>
-    <h3>Question 4: Not really a question. More like a set of sub-questions to ask at each decision point.</h3>
-    <div class="row no-margin-top">
-        <ul>
-            <li>What is my hypothesis?</li>
-            <li>How can I test it?</li>
-            <li>Does my result suggest causation—or merely a sad case of correlation?</li>
-            <li>Is the correlation still interesting?</li>
-            <li>Did that person just lie to me?</li>
-            <li>Has this thing changed over time?</li>
-            <li>Would building a model help tell the story more clearly?</li>
-            <li>More...</li>
-        </ul>
-    </div>
-</section> 
-
-<section>
-    <h3>Question 5: Do I need (more) data?</h3>
-    <div class="row no-margin-top">
-        <div class="col-50">
-            <p>Yes, this question is the same as Question 1.</p>
-            <p>What I'm trying to say is: I'm not particularly interested in the deification of quantitative information.</p>
-            <p>In fact, I think leaning on constructions of so-called 'objective' realities via data analysis can be quite dangerous!</p>
-            <p>Really, the question here is: What will make the story the strongest?</p>
-        </div>
-        <div class="fig-container no-margin-top" data-file="d3-fig/bubbles.html"></div>
-    </div>
-</section> 
-
-
-<section class="center">
 	<h2>Thanks!</h2>
 	<p>
-	Contact: <a href="mailto:caldern@grist.org" style="color:#FF7700">Clayton Aldern</a> | <a href="https://www.grist.org" style="color:#FF7700">Grist</a>
+	Contact: <a href="mailto:caldern@grist.org" style="color:#E6FFA0">caldern@grist.org</a> | <a href="https://twitter.com/compatibilism" style="color:#E6FFA0">@compatibilism</a>
 	</p>
+    <div style="margin-top: 20%;">
+        <a href="https://csde.washington.edu/">
+            <img data-src="imgs/csde.png" style="float:right;width:300px;margin: 10;">
+        </a>
+        <a href="https://www.grist.org/">
+            <img data-src="imgs/Grist_celery_large.png" style="float:right;width:200px;margin: 10">
+        </a>
+    </div>
 </section>
 
 

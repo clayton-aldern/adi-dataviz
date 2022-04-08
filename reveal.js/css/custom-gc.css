@@ -3,11 +3,11 @@
  *********************************************/
 
 body section {
-  color: #d2d2d2;
+  color: #f0f0f0;
 }
 
 .reveal {
-  font-family: "Open Sans";
+  font-family: "Overpass";
   /*font-size: 1.5em;*/
   font-weight: normal;
   color: #000000;}
@@ -91,7 +91,7 @@ section[data-transition*="none-in"].present {
 .reveal h5,
 .reveal h6 {
   margin: 0 0 0 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Overpass", sans-serif;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: normal;
